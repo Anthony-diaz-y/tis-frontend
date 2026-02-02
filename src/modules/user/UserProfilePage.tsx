@@ -1,38 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { UserProfileCard } from "./UserProfileCard";
-import type { User } from "@/shared/types";
+import { useUserData } from "./hooks/useUserData";
 
 interface UserProfilePageProps {
   id: string;
 }
 
 export function UserProfilePage({ id }: UserProfilePageProps) {
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    const url = `/api/user/${id}`;
-    fetch(url)
-      .then((res) => {
-        if (!res.ok) {
-          setError(true);
-          return null;
-        }
-        return res.json() as Promise<User>;
-      })
-      .then((data) => {
-        if (data) setUser(data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setError(true);
-        setLoading(false);
-      });
-  }, [id]);
+  const { user, loading, error } = useUserData(id);
 
   if (loading) {
     return (
