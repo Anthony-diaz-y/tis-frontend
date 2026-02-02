@@ -9,6 +9,8 @@ const DEMO_USER: User = {
   dni: "12345678",
   cip: "123456",
   area: "Tecnología",
+  photo_url:
+    "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg",
 };
 
 interface UserPageProps {

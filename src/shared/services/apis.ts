@@ -5,6 +5,7 @@ const BASE_URL = API_URL;
 
 export const userEndpoints = {
   GET_USER_BY_ID: BASE_URL + "/user", // Assuming backend REST pattern /user/:id or similar
+  CREATE_USER: BASE_URL + "/user/createUser",
 };
 
 // Placeholders for other modules as they are implemented

@@ -26,10 +26,18 @@ export function UserProfileCard({ user, onClose }: UserProfileCardProps) {
 
       {/* Avatar */}
       <div className="flex justify-center -mt-[50px] relative z-10">
-        <div className="w-[100px] h-[100px] rounded-full bg-white shadow-md flex items-center justify-center relative text-[#6b7355]">
-          <UserIcon />
+        <div className="w-[100px] h-[100px] rounded-full bg-white shadow-md flex items-center justify-center relative text-[#6b7355] overflow-hidden">
+          {user.photo_url ? (
+            <img
+              src={user.photo_url}
+              alt={user.name}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <UserIcon />
+          )}
           <span
-            className="absolute bottom-1 right-1 w-6 h-6 rounded-full bg-[#3d6b4a] text-white flex items-center justify-center"
+            className="absolute bottom-1 right-1 w-6 h-6 rounded-full bg-[#3d6b4a] text-white flex items-center justify-center border-2 border-white"
             aria-hidden
           >
             <CheckIcon />

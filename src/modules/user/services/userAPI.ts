@@ -20,3 +20,25 @@ export const getUserById = async (id: string): Promise<User | null> => {
     return null;
   }
 };
+
+export const createUser = async (formData: FormData): Promise<User | null> => {
+  try {
+    const response = await apiConnector<any>(
+      "POST",
+      userEndpoints.CREATE_USER,
+      formData,
+      {
+        "Content-Type": "multipart/form-data",
+      },
+    );
+
+    if (response.data) {
+      // Assuming backend returns the created user in the same format
+      return normalizeUser(response.data, response.data.id || "");
+    }
+    return null;
+  } catch (error) {
+    console.error("Error creating user:", error);
+    return null;
+  }
+};

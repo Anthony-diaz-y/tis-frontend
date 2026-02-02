@@ -23,6 +23,7 @@ export function normalizeUser(raw: any, requestedId: string): User | null {
   const dni = obj.dni ?? obj.document ?? "S/D";
   const cip = obj.cip ?? "S/C";
   const area = obj.area ?? "S/A";
+  const photo_url = obj.photo_url ?? obj.photoUrl ?? undefined;
 
   const id = typeof obj.id === "string" ? obj.id : requestedId;
 
@@ -36,6 +37,7 @@ export function normalizeUser(raw: any, requestedId: string): User | null {
       dni: String(dni),
       cip: String(cip),
       area: String(area),
+      photo_url: photo_url ? String(photo_url) : undefined,
     };
   }
   return null;

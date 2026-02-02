@@ -10,4 +10,5 @@ export interface User {
   dni: string;
   cip: string;
   area: string;
+  photo_url?: string;
 }
