@@ -1,7 +1,6 @@
 "use client";
 
-import type { User } from "@/shared/types";
-import { getFullName } from "@/shared/types";
+import type { User } from "./types";
 
 export interface UserProfileCardProps {
   user: User;
@@ -9,8 +8,6 @@ export interface UserProfileCardProps {
 }
 
 export function UserProfileCard({ user, onClose }: UserProfileCardProps) {
-  const fullName = getFullName(user);
-
   return (
     <article className="w-full max-w-[400px] mx-auto bg-white rounded-[14px] shadow-[0_4px_24px_rgba(0,0,0,0.08)] overflow-hidden">
       {/* Header militar */}
@@ -50,9 +47,12 @@ export function UserProfileCard({ user, onClose }: UserProfileCardProps) {
 
       {/* Campos */}
       <div className="px-6 pb-5">
-        <Row label="Nombre" value={user.nombre} />
-        <Row label="Apellido" value={user.apellidos} />
         <Row label="Grado" value={user.grado} link />
+        <Row label="Especialidad" value={user.specialty} link />
+        <Row label="Ape_Nomb" value={user.name} />
+        <Row label="Dni" value={user.dni} link />
+        <Row label="Cip" value={user.cip} link />
+        <Row label="Área" value={user.area} link />
       </div>
 
       {/* Verificación */}
