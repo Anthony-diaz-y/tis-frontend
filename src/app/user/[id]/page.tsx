@@ -1,11 +1,14 @@
 import { UserProfileCard, UserProfilePage } from "@/modules/user";
-import type { User } from "@/shared/types";
+import type { User } from "@/modules/user/types";
 
 const DEMO_USER: User = {
   id: "demo",
-  nombre: "María",
-  apellidos: "González Pérez",
+  name: "María González Pérez",
   grado: "Licenciatura en Ingeniería",
+  specialty: "Ingeniería de Sistemas",
+  dni: "12345678",
+  cip: "123456",
+  area: "Tecnología",
 };
 
 interface UserPageProps {

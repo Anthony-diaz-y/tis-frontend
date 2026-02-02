@@ -1,7 +1,17 @@
-import baseUrl from "./api.config";
+// src/shared/services/apis.ts
+import { API_URL } from "@/shared/config/api.config";
 
-const userBase = `${baseUrl.replace(/\/?$/, "")}/user`;
+const BASE_URL = API_URL;
 
-export function getOneUserUrl(id: string): string {
-  return `${userBase}/${id}`;
-}
+export const userEndpoints = {
+  GET_USER_BY_ID: BASE_URL + "/user", // Assuming backend REST pattern /user/:id or similar
+};
+
+// Placeholders for other modules as they are implemented
+export const courseEndpoints = {
+  // GET_ALL_COURSE_API: BASE_URL + "/course/getAllCourses",
+};
+
+export const domainEndpoints = {
+  // GET_ALL_DOMAINS_API: BASE_URL + "/domain/getAllDomains",
+};
