@@ -1,6 +1,4 @@
-import { notFound } from "next/navigation";
-import { UserProfileCard } from "@/modules/user";
-import { fetchUserById } from "@/shared/services/user.service";
+import { UserProfileCard, UserProfilePage } from "@/modules/user";
 import type { User } from "@/shared/types";
 
 const DEMO_USER: User = {
@@ -14,6 +12,11 @@ interface UserPageProps {
   params: Promise<{ id: string }>;
 }
 
+/**
+ * Si id === "demo" → muestra datos de ejemplo (sin llamar al backend).
+ * Si no → UserProfilePage hace fetch a /api/user/[id] (visible en Network);
+ * la API route llama al backend (Railway).
+ */
 export default async function UserPage({ params }: UserPageProps) {
   const { id } = await params;
 
@@ -27,17 +30,5 @@ export default async function UserPage({ params }: UserPageProps) {
     );
   }
 
-  const { user, error } = await fetchUserById(id);
-
-  if (error || !user) {
-    notFound();
-  }
-
-  return (
-    <main className="min-h-screen bg-[#e8e6e0] py-6 px-4 flex justify-center">
-      <div className="w-full max-w-[432px]">
-        <UserProfileCard user={user} />
-      </div>
-    </main>
-  );
+  return <UserProfilePage id={id} />;
 }

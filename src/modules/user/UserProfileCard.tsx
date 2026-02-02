@@ -31,7 +31,10 @@ export function UserProfileCard({ user, onClose }: UserProfileCardProps) {
       <div className="flex justify-center -mt-[50px] relative z-10">
         <div className="w-[100px] h-[100px] rounded-full bg-white shadow-md flex items-center justify-center relative text-[#6b7355]">
           <UserIcon />
-          <span className="absolute bottom-1 right-1 w-6 h-6 rounded-full bg-[#3d6b4a] text-white flex items-center justify-center" aria-hidden>
+          <span
+            className="absolute bottom-1 right-1 w-6 h-6 rounded-full bg-[#3d6b4a] text-white flex items-center justify-center"
+            aria-hidden
+          >
             <CheckIcon />
           </span>
         </div>
@@ -62,7 +65,9 @@ export function UserProfileCard({ user, onClose }: UserProfileCardProps) {
           <CheckIcon />
         </span>
         <div>
-          <p className="m-0 text-[15px] font-bold text-[#2d5a3d]">Identidad verificada</p>
+          <p className="m-0 text-[15px] font-bold text-[#2d5a3d]">
+            Identidad verificada
+          </p>
           <p className="mt-0.5 text-[13px] text-[#4a7c59]">Credencial válida</p>
         </div>
       </div>
