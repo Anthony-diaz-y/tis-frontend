@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { UserProfileCard } from "./UserProfileCard";
 import { useUserData } from "./hooks/useUserData";
 
@@ -13,8 +14,14 @@ export function UserProfilePage({ id }: UserProfilePageProps) {
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-[#e8e6e0] py-6 px-4 flex justify-center">
-        <div className="w-full max-w-[432px] pt-6">
+      <main className="relative min-h-screen bg-[#e8e6e0] py-6 px-4 flex justify-center overflow-hidden">
+        {/* Executive Background Loading */}
+        <div className="fixed inset-0 pointer-events-none">
+          <div className="h-1/3 bg-[#3d4f1c] w-full" />
+          <div className="h-2/3 bg-[#f4f2ee] w-full" />
+        </div>
+
+        <div className="relative z-10 w-full max-w-[432px] pt-6">
           <div className="bg-white rounded-[14px] shadow-[0_4px_24px_rgba(0,0,0,0.08)] overflow-hidden">
             <div className="h-[88px] bg-[#4a5d23]/30 rounded-t-[14px] animate-pulse" />
             <div className="w-[100px] h-[100px] -mt-[50px] mx-auto rounded-full bg-[#d4d0c8] animate-pulse" />
@@ -54,9 +61,15 @@ export function UserProfilePage({ id }: UserProfilePageProps) {
   }
 
   return (
-    <main className="min-h-screen bg-[#e8e6e0] py-6 px-4 flex justify-center">
-      <div className="w-full max-w-[432px]">
-        <UserProfileCard user={user} />
+    <main className="relative min-h-screen flex flex-col items-center py-12 px-4 overflow-hidden">
+      {/* Executive Presentation Background */}
+      <div className="fixed inset-0 pointer-events-none -z-10">
+        <div className="h-1/3 bg-[#3d4f1c] w-full shadow-lg" />
+        <div className="h-2/3 bg-[#f4f2ee] w-full" />
+      </div>
+
+      <div className="relative z-10 w-full max-w-[432px] mt-8">
+        {user && <UserProfileCard user={user} />}
       </div>
     </main>
   );

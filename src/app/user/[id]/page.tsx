@@ -1,5 +1,6 @@
 import { UserProfileCard, UserProfilePage } from "@/modules/user";
 import type { User } from "@/modules/user/types";
+import Image from "next/image";
 
 const DEMO_USER: User = {
   id: "demo",
@@ -22,8 +23,14 @@ export default async function UserPage({ params }: UserPageProps) {
 
   if (id === "demo") {
     return (
-      <main className="min-h-screen bg-[#e8e6e0] py-6 px-4 flex justify-center">
-        <div className="w-full max-w-[432px]">
+      <main className="relative min-h-screen flex flex-col items-center py-12 px-4 overflow-hidden">
+        {/* Executive Presentation Background */}
+        <div className="fixed inset-0 pointer-events-none -z-10">
+          <div className="h-1/3 bg-[#3d4f1c] w-full shadow-lg" />
+          <div className="h-2/3 bg-[#f4f2ee] w-full" />
+        </div>
+
+        <div className="relative z-10 w-full max-w-[432px] mt-8">
           <UserProfileCard user={DEMO_USER} />
         </div>
       </main>

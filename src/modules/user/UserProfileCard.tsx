@@ -1,6 +1,7 @@
 "use client";
 
 import type { User } from "./types";
+import Image from "next/image";
 
 export interface UserProfileCardProps {
   user: User;
@@ -9,9 +10,22 @@ export interface UserProfileCardProps {
 
 export function UserProfileCard({ user, onClose }: UserProfileCardProps) {
   return (
-    <article className="w-full max-w-[400px] mx-auto bg-white rounded-[14px] shadow-[0_4px_24px_rgba(0,0,0,0.08)] overflow-hidden">
+    <article className="w-full max-w-[400px] mx-auto bg-white rounded-[14px] shadow-[0_8px_32px_rgba(0,0,0,0.12)] overflow-hidden relative">
+      {/* Background Watermark inside Card */}
+      <div className="absolute inset-0 pointer-events-none select-none opacity-[0.14] flex items-center justify-center p-8 z-0">
+        <Image
+          src="/logo-background.webp"
+          alt="Crest watermark"
+          width={340}
+          height={340}
+          className="object-contain"
+          unoptimized
+          priority
+        />
+      </div>
+
       {/* Header militar */}
-      <div className="h-[88px] bg-[#3d4f1c] rounded-t-[14px] relative">
+      <div className="h-[88px] bg-[#3d4f1c] rounded-t-[14px] relative z-10">
         {onClose && (
           <button
             type="button"
@@ -25,8 +39,8 @@ export function UserProfileCard({ user, onClose }: UserProfileCardProps) {
       </div>
 
       {/* Avatar */}
-      <div className="flex justify-center -mt-[50px] relative z-10">
-        <div className="w-[100px] h-[100px] rounded-full bg-white shadow-md flex items-center justify-center relative text-[#6b7355] overflow-hidden">
+      <div className="flex justify-center -mt-[65px] relative z-10">
+        <div className="w-[130px] h-[130px] rounded-full bg-white shadow-lg flex items-center justify-center relative text-[#6b7355] border-4 border-white overflow-hidden">
           {user.photo_url ? (
             <img
               src={user.photo_url}
@@ -37,7 +51,7 @@ export function UserProfileCard({ user, onClose }: UserProfileCardProps) {
             <UserIcon />
           )}
           <span
-            className="absolute bottom-1 right-1 w-6 h-6 rounded-full bg-[#3d6b4a] text-white flex items-center justify-center border-2 border-white"
+            className="absolute bottom-2 right-2 w-7 h-7 rounded-full bg-[#3d6b4a] text-white flex items-center justify-center border-2 border-white shadow-sm"
             aria-hidden
           >
             <CheckIcon />
@@ -45,22 +59,16 @@ export function UserProfileCard({ user, onClose }: UserProfileCardProps) {
         </div>
       </div>
 
-      {/* Insignia grado */}
-      <div className="flex justify-center px-6 mt-2">
-        <div className="inline-flex items-center gap-2 px-3.5 py-2 bg-[#e8ebe0] text-[#3d4f1c] rounded-lg text-sm font-medium border border-[#3d4f1c]/20">
-          <GraduationIcon />
-          <span>{user.grado}</span>
+      {/* Campos con fondo semi-transparente para legibilidad */}
+      <div className="px-6 pb-5 relative z-10">
+        <div className="bg-white/40 backdrop-blur-[1px] rounded-lg px-2 shadow-sm">
+          <Row label="Grado" value={user.grado} />
+          <Row label="Especialidad" value={user.specialty} />
+          <Row label="Ape_Nomb" value={user.name} />
+          <Row label="Dni" value={user.dni} />
+          <Row label="Cip" value={user.cip} />
+          <Row label="Área" value={user.area} />
         </div>
-      </div>
-
-      {/* Campos */}
-      <div className="px-6 pb-5">
-        <Row label="Grado" value={user.grado} link />
-        <Row label="Especialidad" value={user.specialty} link />
-        <Row label="Ape_Nomb" value={user.name} />
-        <Row label="Dni" value={user.dni} link />
-        <Row label="Cip" value={user.cip} link />
-        <Row label="Área" value={user.area} link />
       </div>
 
       {/* Verificación */}
@@ -89,11 +97,11 @@ function Row({
   link?: boolean;
 }) {
   return (
-    <div className="flex justify-between items-center py-3.5 border-b border-[#e0ddd4] last:border-0 gap-4">
-      <span className="text-sm text-[#5c5c5c] shrink-0">{label}</span>
+    <div className="flex justify-between items-center py-3.5 border-b border-[#e0ddd4]/50 last:border-0 gap-4">
+      <span className="text-sm font-bold text-[#4a4a4a] shrink-0">{label}</span>
       <span
-        className={`text-sm text-right ${
-          link ? "text-[#3d4f1c] underline" : "text-[#5c5c5c]"
+        className={`text-sm text-right font-medium ${
+          link ? "text-[#3d4f1c] underline font-bold" : "text-[#2d2d2d]"
         }`}
       >
         {value}
@@ -118,8 +126,8 @@ function CloseIcon() {
 function UserIcon() {
   return (
     <svg
-      width="56"
-      height="56"
+      width="72"
+      height="72"
       viewBox="0 0 56 56"
       fill="none"
       className="text-[#6b7355]"
