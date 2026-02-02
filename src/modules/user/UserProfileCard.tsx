@@ -40,10 +40,6 @@ export function UserProfileCard({ user, onClose }: UserProfileCardProps) {
         </div>
       </div>
 
-      <h1 className="mt-3 mx-6 text-xl font-bold text-[#1c2316] text-center leading-tight">
-        {fullName}
-      </h1>
-
       {/* Insignia grado */}
       <div className="flex justify-center px-6 mt-2">
         <div className="inline-flex items-center gap-2 px-3.5 py-2 bg-[#e8ebe0] text-[#3d4f1c] rounded-lg text-sm font-medium border border-[#3d4f1c]/20">

@@ -1,11 +1,6 @@
 import { getOneUserUrl } from "./apis";
 import type { User } from "@/shared/types/user.types";
 
-/**
- * Tu backend devuelve: { name, last_name, grade } (sin id).
- * Mapeamos a nuestro tipo User (id, nombre, apellidos, grado).
- * El id lo tomamos de la URL cuando el backend no lo envía.
- */
 function normalizeUser(
   raw: Record<string, unknown>,
   requestedId: string

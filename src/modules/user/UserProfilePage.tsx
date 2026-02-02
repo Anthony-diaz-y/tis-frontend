@@ -9,10 +9,6 @@ interface UserProfilePageProps {
   id: string;
 }
 
-/**
- * Cliente: hace fetch a /api/user/[id] (visible en Network).
- * La API route del front llama al backend (Railway).
- */
 export function UserProfilePage({ id }: UserProfilePageProps) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);

@@ -12,11 +12,6 @@ interface UserPageProps {
   params: Promise<{ id: string }>;
 }
 
-/**
- * Si id === "demo" → muestra datos de ejemplo (sin llamar al backend).
- * Si no → UserProfilePage hace fetch a /api/user/[id] (visible en Network);
- * la API route llama al backend (Railway).
- */
 export default async function UserPage({ params }: UserPageProps) {
   const { id } = await params;
 
